@@ -1,0 +1,12 @@
+<h1> Home Users</h1>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete  %>
+  <%= link_to "Users", admin_user_url %>
+  <%= link_to "New User", new_admin_user_path %>
+  <% else %>
+  <%= link_to "Sign out", destroy_admin_user_url, method: :delete  %>
+  <% end %>
+  <% else %>
+  <%= link_to "Sign in", new_admin_user_url %>
+<% end %>

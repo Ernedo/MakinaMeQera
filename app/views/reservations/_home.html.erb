@@ -1,0 +1,50 @@
+<%= form_with(model: reservation, local: true) do |form| %>
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :car_id %>
+    <select name="car_id">
+      <%@car_list.each do |car|%>
+        <option value="<%= car.id%>"><%= car.model%> - <%= car.targa%></option>
+      <%end%>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= form.label :client_id %>
+    <%=  select_tag "client_id", options_from_collection_for_select(@client_list, "id", "name") %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
