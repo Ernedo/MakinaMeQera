@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<h1> users </h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to 'Show', user_path %></td>
+        </tr>
+
+    </tbody>
+</table>

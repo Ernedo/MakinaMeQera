@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @clients = Client.all
+      @clients = Client.all
   end
   def new
     @client = Client.new
@@ -14,7 +14,9 @@ class ClientsController < ApplicationController
   def show
   end
   def create
+    Rails.logger.info "Params: #{client_params}"
     @client = Client.new(client_params)
+    
     respond_to do |format|
       if @client.save
         format.html {redirect_to @client, notice: 'Client was successfully created.' }

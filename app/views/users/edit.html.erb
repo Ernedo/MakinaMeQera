@@ -1,0 +1,36 @@
+<h2>Edit your profile </h2>
+<%= simple_form_for(resource, url: update_user_path, :method => :put) do |f| %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(resource.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="field">
+     <br />
+    <%= f.input :firstname %>
+  </div>
+  <div class="field">
+     <br />
+      <%= f.input :lastname %>
+    </div>
+
+  <div class="field">
+      <%= f.label :current_password %> <br />
+      <%= f.password_field :current_password %>
+    </div>
+  <div class="field">
+    <%= f.label :password, "Password" %><br />
+    <%= f.password_field :password, :autocomplete => "off"  %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.button :submit %>
+<% end %>

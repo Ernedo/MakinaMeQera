@@ -17,12 +17,16 @@
         <%= link_to "Reservation", reservations_path %>
         <%= link_to "Car", cars_path %>
         <%= link_to "Client", clients_path %>
-        <%= link_to "Users", admin_users_url %>
+        <%= link_to "Users", admin_users_path %>
+        <%= link_to "Profile", user_path %>
+        <%= link_to "Photos", photos_path %>
         <% else %>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete  %>
           <%= link_to "Car", cars_path %>
           <%= link_to "Client", clients_path %>
           <%= link_to "Reservation", reservations_path %>
+          <%= link_to "Profile", user_path %>
+          <%= link_to "Photos", photos_path %>
         <% end %>
       <% else %>
       <%= link_to "Sign in", new_user_session_path %>

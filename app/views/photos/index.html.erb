@@ -1,0 +1,27 @@
+  <h1>Photos</h1>
+
+            <% @photos.each_with_index do |photo, index| %>
+              <% if (index%5 == 0) %>
+                <div class="row" style="display: -webkit-box; padding-bottom: 30px;">
+              <%end%>
+                <div class="" style="padding-right: 100px">
+                  <%= image_tag(photo.image, :size => "100x100" ) %><br>
+
+                  <% if user_signed_in? && (current_user == photo.user ||  current_user.admin? ) %>
+
+                  <%= link_to 'Edit', edit_photo_path(photo) %>
+                  <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+
+
+                </div>
+                <% if index%5 == 4 || index == (@photos.size - 1)%>
+                  </div>
+                <% end %>
+            <% end %>
+
+            <div class="row">
+              <%= link_to 'New Photo', new_photo_path %>
+              <%= link_to 'Home', root_path %>
+
+            </div>
