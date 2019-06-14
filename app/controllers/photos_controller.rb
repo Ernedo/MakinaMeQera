@@ -1,4 +1,6 @@
+
 class PhotosController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_photo, only: [ :edit, :update, :destroy, :show]
   before_action :authenticate_user!
   load_and_authorize_resource
@@ -46,13 +48,41 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    @photo = Photo.find(params[:id])
     @photo.destroy
     respond_to do |format|
       format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
-
     end
   end
 
+  def destroy_multiple
+    if current_user.admin?
+      @photos = Photo.where(id: params[:photo_ids])
+    else
+      @photos = current_user.photos.where(id: params[:photo_ids])
+    end
+
+    @photos.destroy_all
+    respond_to do |format|
+      format.html { redirect_to photos_url, notice: 'Photos select was destroyed' }
+    end
+  end
+
+  def new_create_multiple
+  end
+
+  def create_multiple
+
+    photos.each do |image|
+      Photo.create(image: image, user_id: current_user.id)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to photos_url, notice: 'Photos where created successfully' }
+    end
+
+  end
+  
   private
 
     def set_photo
@@ -62,5 +92,9 @@ class PhotosController < ApplicationController
 
     def photo_params
       params.require(:photo).permit(:image)
+    end
+
+    def photos
+      params.require(:photos)
     end
 end

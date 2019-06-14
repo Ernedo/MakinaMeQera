@@ -1,27 +1,28 @@
-  <h1>Photos</h1>
+<h1>Photos</h1>
+<%= form_tag photos_destroy_multiple_path, method: :delete do %>
 
-            <% @photos.each_with_index do |photo, index| %>
-              <% if (index%5 == 0) %>
-                <div class="row" style="display: -webkit-box; padding-bottom: 30px;">
-              <%end%>
-                <div class="" style="padding-right: 100px">
-                  <%= image_tag(photo.image, :size => "100x100" ) %><br>
-
-                  <% if user_signed_in? && (current_user == photo.user ||  current_user.admin? ) %>
-
+          <% @photos.each_with_index do |photo, index| %>
+            <% if (index%5 == 0) %>
+              <div class="row" style="display: -webkit-box; padding-bottom: 30px;">
+            <%end%>
+              <div class="" style="padding-right: 100px">
+                <%= image_tag(photo.image, :size => "100x100") %><br>
+                <% if user_signed_in? && (current_user == photo.user ||  current_user.admin? ) %>
+                  <%= check_box_tag "photo_ids[]", photo.id %>
                   <%= link_to 'Edit', edit_photo_path(photo) %>
-                  <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <% end %>
-
-
-                </div>
-                <% if index%5 == 4 || index == (@photos.size - 1)%>
-                  </div>
+                  <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% end %>
-            <% end %>
 
-            <div class="row">
-              <%= link_to 'New Photo', new_photo_path %>
-              <%= link_to 'Home', root_path %>
+              </div>
+              <% if index%5 == 4 || index == (@photos.size - 1)%>
+                </div>
+              <% end %>
+          <% end %>
 
-            </div>
+          <div class="row">
+            <%= link_to 'New Photo', new_photo_path %>
+            <%= link_to 'New Photos', photos_new_create_multiple_path %>
+            <%= link_to 'Home', root_path %>
+            <%= submit_tag "Delete selected", :class => 'btn  btn-xs' %>
+          </div>
+<% end %>

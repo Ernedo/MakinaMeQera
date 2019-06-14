@@ -1,0 +1,9 @@
+<h1>New Photos</h1>
+
+
+<form action="/photos/create_multiple" method="post" enctype="multipart/form-data">
+  Select images: <input multiple="multiple" type="file" name="photos[]" id="photo_image">
+  <input type="submit">
+</form>
+
+<%= link_to 'Back', photos_path %>

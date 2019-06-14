@@ -1,0 +1,13 @@
+defaults: &defaults
+  "blob_cleanup_job_queue": 1
+
+dev:
+  <<: *defaults
+development:
+  <<: *defaults
+staging:
+  <<: *defaults
+test:
+  <<: *defaults
+production:
+  <<: *defaults

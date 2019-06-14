@@ -1,0 +1,21 @@
+defaults: &defaults
+  blob_cleanup_job_queue:
+    every: 30s
+    class: BlobCleanupJob
+    args:
+    description: Clean db from blob
+
+dev:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

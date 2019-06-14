@@ -8,6 +8,7 @@ class User < ApplicationRecord
        enum role: [:admin, :user]
   has_many :reservation
   has_many :image
+  has_many :photos
 
   validates :current_password, :presence => true, :on => :update_profile
   validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :update_profile, :unless => lambda{ |user| user.password.blank? }

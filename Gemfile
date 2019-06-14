@@ -7,6 +7,7 @@ ruby '2.3.6'
 gem 'rails', '~> 5.2.3'
 gem 'devise'
 gem 'cancancan'
+gem 'select_all-rails'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
@@ -27,8 +28,18 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
+#activejob things
+gem 'resque'
+gem 'resque-scheduler'
+gem 'resque-web', require: 'resque_web'
+gem 'resque-pool'
+
+gem 'colorize'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

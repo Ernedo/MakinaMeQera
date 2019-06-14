@@ -18,8 +18,6 @@ class Ability
         cannot :manage, User
         can :manage, Photo, user_id: user.id
         can :show, Photo
-
-
       end
 
   end
